@@ -1,0 +1,14 @@
+.RegisterText {
+  margin: 1rem 0;
+  padding: 1rem 0;
+}
+
+.RegisterText h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.RegisterText p {
+  font-weight: 500;
+}

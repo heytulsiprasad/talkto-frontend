@@ -1,0 +1,5 @@
+.SignupContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) minmax(400px, 2.7fr) repeat(3, 1fr);
+  grid-template-rows: 1fr minmax(600px, 3fr) 1fr;
+}

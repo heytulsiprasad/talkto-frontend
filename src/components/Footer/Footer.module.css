@@ -1,0 +1,25 @@
+.Footer {
+  color: #828282;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Footer a {
+  color: #2F80ED;
+  margin-left: 5px;
+}
+
+.FooterIcons {
+  display: flex;
+  margin: 1rem;
+}
+
+.FooterIcons svg:hover {
+  cursor: pointer;
+  filter: brightness(0.5);
+}
+
+.FooterIcons svg:not(:last-of-type) {
+  margin-right: 1.2rem;
+}

@@ -1,0 +1,16 @@
+.LogoBox {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.LogoBox img {
+	width: 35px;
+}
+
+.LogoBox h1 {
+	margin-left: 1rem;
+	align-self: center;
+	font-weight: 700;
+	font-size: 20px;
+	text-transform: lowercase;
+}
