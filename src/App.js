@@ -1,21 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import "./App.css";
-import "./tailwind.generated.css";
-import SignupContainer from "./components/SignupContainer/SingupContainer";
-import LoginContainer from "./components/LoginContainer/LoginContainer";
+import SignupContainer from "./containers/SignupContainer";
+import LoginContainer from "./containers/LoginContainer";
+import PrivateRoute from "./containers/PrivateRoute";
+import Dashboard from "./containers/Dashboard";
+import store from "./redux/store";
 
 function App() {
 	return (
-		<React.Fragment>
-			<Router>
-				<Switch>
-					<Route path="/signup" component={SignupContainer} />
-					<Route path="/login" component={LoginContainer} />
-				</Switch>
-			</Router>
-		</React.Fragment>
+		<Provider store={store}>
+			<React.Fragment>
+				<Router>
+					<Switch>
+						<Route exact path="/signup" component={SignupContainer} />
+						<Route exact path="/login" component={LoginContainer} />
+						<PrivateRoute exact path="/dashboard" component={Dashboard} />
+					</Switch>
+				</Router>
+			</React.Fragment>
+		</Provider>
 	);
 }
 
