@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Navbar from "./Navbar";
+import Titlebar from "./Titlebar";
+import Infobox from "./Infobox";
 
 const Layout = styled.div`
 	display: grid;
@@ -12,6 +14,8 @@ const Profile = () => {
 	return (
 		<Layout>
 			<Navbar />
+			<Titlebar />
+			<Infobox />
 		</Layout>
 	);
 };
