@@ -15,9 +15,10 @@ function App() {
 			<React.Fragment>
 				<Router>
 					<Switch>
+						<PrivateRoute exact path="/" component={Dashboard} />
 						<Route exact path="/signup" component={SignupContainer} />
 						<Route exact path="/login" component={LoginContainer} />
-						<PrivateRoute exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/dash" component={Dashboard} />
 					</Switch>
 				</Router>
 			</React.Fragment>
