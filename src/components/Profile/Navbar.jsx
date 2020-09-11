@@ -92,8 +92,29 @@ const Overlay = styled.div`
 `;
 
 const Navbar = () => {
+	const topbarRef = React.useRef(null);
 	const [isOpen, setIsOpen] = React.useState(false);
 	const toggleDropdown = () => setIsOpen(!isOpen);
+
+	// Change state when clicked outside of dropdown
+	React.useEffect(() => {
+		if (isOpen) {
+			const handleClickOutside = (event) => {
+				if (topbarRef.current && !topbarRef.current.contains(event.target)) {
+					console.log("Hit");
+					setIsOpen(false);
+				}
+			};
+
+			// Add event listener
+			document.addEventListener("mousedown", handleClickOutside);
+
+			return () => {
+				// Unbind the event listener on clean up
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}
+	}, [topbarRef, isOpen]);
 
 	return (
 		<NavbarContainer>
@@ -102,7 +123,7 @@ const Navbar = () => {
 				<h1>Talk.to</h1>
 			</Logo>
 			<Dropdown>
-				<Topbar onClick={toggleDropdown}>
+				<Topbar ref={topbarRef} onClick={toggleDropdown}>
 					<img
 						className="person-profile"
 						src={Person}
@@ -116,11 +137,11 @@ const Navbar = () => {
 				{isOpen && (
 					<Overlay>
 						<div className="profile option">
-							<span class="material-icons">account_circle</span>
+							<span className="material-icons">account_circle</span>
 							<h2 className="option-text">My Profile</h2>
 						</div>
 						<div className="logout option">
-							<span class="material-icons">login</span>
+							<span className="material-icons">login</span>
 							<h2 className="option-text">Logout</h2>
 						</div>
 					</Overlay>
