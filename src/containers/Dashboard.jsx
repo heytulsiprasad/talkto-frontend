@@ -1,13 +1,20 @@
 import React from "react";
 
-import Profile from "./../components/Profile";
+import Layout from "./../components/Profile/Layout";
+import Navbar from "./../components/Profile/Navbar";
+import Titlebar from "./../components/Profile/Titlebar";
+import Infobox from "./../components/Profile/Infobox";
 
-const Dashboard = () => {
-	return (
-		<div>
-			<Profile />
-		</div>
-	);
-};
+class Dashboard extends React.Component {
+	render() {
+		return (
+			<Layout>
+				<Navbar />
+				<Titlebar />
+				<Infobox />
+			</Layout>
+		);
+	}
+}
 
 export default Dashboard;

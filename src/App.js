@@ -7,6 +7,7 @@ import SignupContainer from "./containers/SignupContainer";
 import LoginContainer from "./containers/LoginContainer";
 import PrivateRoute from "./containers/PrivateRoute";
 import Dashboard from "./containers/Dashboard";
+import EditProfile from "./containers/EditProfile";
 import store from "./redux/store";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 						<Route exact path="/signup" component={SignupContainer} />
 						<Route exact path="/login" component={LoginContainer} />
 						<Route exact path="/dash" component={Dashboard} />
+						<Route exact path="/edit-profile" component={EditProfile} />
 					</Switch>
 				</Router>
 			</React.Fragment>
