@@ -65,7 +65,9 @@ export const getUserProfile = () => (dispatch) => {
   axios
     .get("/profile", { withCredentials: true })
     .then((res) => {
-      const { name, bio, phone, local, google, facebook } = res.data;
+      const {
+        name, bio, phone, local, google, facebook,
+      } = res.data;
 
       const user = {
         name,

@@ -26,16 +26,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn format"
+      "pre-commit": "yarn lint"
     }
   },
   "lint-staged": {
     "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write",
+      "eslint . --fix",
       "git add"
     ]
   },
