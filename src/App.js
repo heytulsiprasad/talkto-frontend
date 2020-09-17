@@ -11,21 +11,23 @@ import EditProfile from "./containers/EditProfile";
 import store from "./redux/store";
 
 function App() {
-	return (
-		<Provider store={store}>
-			<React.Fragment>
-				<Router>
-					<Switch>
-						<PrivateRoute exact path="/" component={Dashboard} />
-						<Route exact path="/signup" component={SignupContainer} />
-						<Route exact path="/login" component={LoginContainer} />
-						<Route exact path="/dash" component={Dashboard} />
-						<Route exact path="/edit-profile" component={EditProfile} />
-					</Switch>
-				</Router>
-			</React.Fragment>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <>
+        <Router>
+          <Switch>
+            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute exact path="/edit" component={EditProfile} />
+            <Route exact path="/signup" component={SignupContainer} />
+            <Route exact path="/login" component={LoginContainer} />
+            {/* For testing */}
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/edit-profile" component={EditProfile} />
+          </Switch>
+        </Router>
+      </>
+    </Provider>
+  );
 }
 
 export default App;

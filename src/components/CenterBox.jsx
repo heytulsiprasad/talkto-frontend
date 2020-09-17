@@ -22,7 +22,7 @@ const CenterBoxParent = styled.div`
 `;
 
 const CenterBox = ({ children }) => {
-	return <CenterBoxParent>{children}</CenterBoxParent>;
+  return <CenterBoxParent>{children}</CenterBoxParent>;
 };
 
 export default CenterBox;

@@ -6,15 +6,15 @@ import Back from "./../components/Profile/Back";
 import EditInfo from "./../components/Profile/EditInfo";
 
 class EditProfile extends React.Component {
-	render() {
-		return (
-			<Layout>
-				<Navbar />
-				<Back />
-				<EditInfo />
-			</Layout>
-		);
-	}
+  render() {
+    return (
+      <Layout>
+        <Navbar />
+        <Back />
+        <EditInfo />
+      </Layout>
+    );
+  }
 }
 
 export default EditProfile;
