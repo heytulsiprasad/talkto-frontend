@@ -13,8 +13,8 @@
   "prettier.endOfLine": "auto",
   "prettier.packageManager": "yarn",
   // https://stackoverflow.com/a/29972073/11674552
-  "editor.rulers": [80, 80],
-  "workbench.colorCustomizations": {
-    "editorRuler.foreground": "#cbfffb25"
-  }
+  // "editor.rulers": [80, 80],
+  // "workbench.colorCustomizations": {
+  //   "editorRuler.foreground": "#cbfffb25"
+  // }
 }

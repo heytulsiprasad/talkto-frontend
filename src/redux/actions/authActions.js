@@ -1,6 +1,10 @@
 import axios from "axios";
 
-import { SET_CURRENT_USER, GET_ERRORS, CLEAR_ERRORS } from "./types";
+import {
+  SET_CURRENT_USER,
+  GET_ERRORS,
+  CLEAR_ERRORS,
+} from "./types";
 
 export const setCurrentUser = (newUser) => ({
   type: SET_CURRENT_USER,
@@ -61,9 +65,9 @@ export const loginUser = (userData) => (dispatch) => {
 };
 
 // Get user profile
-export const getUserProfile = () => (dispatch) => {
+export const fetchUserProfile = () => (dispatch) => {
   axios
-    .get("/profile", { withCredentials: true })
+    .get("/auth/profile", { withCredentials: true })
     .then((res) => {
       const {
         name, bio, phone, local, google, facebook,

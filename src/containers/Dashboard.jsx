@@ -1,17 +1,18 @@
 import React from "react";
-
-import Layout from "./../components/Profile/Layout";
-import Navbar from "./../components/Profile/Navbar";
-import Titlebar from "./../components/Profile/Titlebar";
-import Infobox from "./../components/Profile/Infobox";
+import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import { getUserProfile } from "./../redux/actions/authActions";
+import Layout from "../components/Profile/Layout";
+import Navbar from "../components/Profile/Navbar";
+import Titlebar from "../components/Profile/Titlebar";
+import Infobox from "../components/Profile/Infobox";
+
+import { fetchUserProfile } from "../redux/actions/authActions";
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    console.log(this.props);
-    this.props.getUserProfile();
+    const { fetchUserProfile } = this.props;
+    fetchUserProfile();
   }
 
   render() {
@@ -25,4 +26,8 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(null, { getUserProfile })(Dashboard);
+Dashboard.propTypes = {
+  fetchUserProfile: PropTypes.func.isRequired,
+};
+
+export default connect(null, { fetchUserProfile })(Dashboard);

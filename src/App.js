@@ -20,9 +20,6 @@ function App() {
             <PrivateRoute exact path="/edit" component={EditProfile} />
             <Route exact path="/signup" component={SignupContainer} />
             <Route exact path="/login" component={LoginContainer} />
-            {/* For testing */}
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/edit-profile" component={EditProfile} />
           </Switch>
         </Router>
       </>
