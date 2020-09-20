@@ -38,8 +38,10 @@ const BtnContainer = styled.button`
 // 	}
 // `;
 
-const Button = ({ children, variant }) => {
-  return <BtnContainer variant={variant}>{children}</BtnContainer>;
-};
+const Button = ({ children, variant, clickHandler }) => (
+  <BtnContainer variant={variant} onClick={clickHandler}>
+    {children}
+  </BtnContainer>
+);
 
 export default Button;

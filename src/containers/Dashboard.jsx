@@ -10,19 +10,29 @@ import Infobox from "../components/Profile/Infobox";
 import { fetchUserProfile, logoutUser } from "../redux/actions/authActions";
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+    };
+  }
+
   componentDidMount() {
     const { fetchUserProfile } = this.props;
-    fetchUserProfile();
+    fetchUserProfile(() => {
+      this.setState({ isLoading: false });
+    });
   }
 
   render() {
-    const { logoutUser } = this.props;
+    const { logoutUser, user } = this.props;
+    const { isLoading } = this.state;
 
     return (
       <Layout>
-        <Navbar onLogout={logoutUser} />
+        <Navbar username={user.name} onLogout={logoutUser} />
         <Titlebar />
-        <Infobox />
+        <Infobox user={user} isLoading={isLoading} />
       </Layout>
     );
   }
@@ -33,4 +43,10 @@ Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { fetchUserProfile, logoutUser })(Dashboard);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { fetchUserProfile, logoutUser })(
+  Dashboard
+);

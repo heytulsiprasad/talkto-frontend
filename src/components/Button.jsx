@@ -28,12 +28,10 @@ const ButtonParent = styled.div`
   }
 `;
 
-const Button = ({ children, clickHandler }) => {
-  return (
-    <ButtonParent>
-      <button onClick={clickHandler}>{children}</button>
-    </ButtonParent>
-  );
-};
+const Button = ({ children, clickHandler }) => (
+  <ButtonParent>
+    <button onClick={clickHandler}>{children}</button>
+  </ButtonParent>
+);
 
 export default Button;

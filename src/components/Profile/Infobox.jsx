@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 import Button from "./Button";
-import Person from "./../../assets/person.jpg";
+import Person from "../../assets/person.jpg";
+import Loading from "../Loading";
 
 const Parent = styled.div`
   grid-row: 3 / 4;
@@ -67,27 +69,39 @@ const Picture = styled.img`
   height: 55px;
 `;
 
-const Infobox = () => {
+const Infobox = (props) => {
+  const { user, isLoading } = props;
+  console.log(user, isLoading);
+
+  const { name, email, bio, phone } = user;
+
   return (
     <Parent>
-      <Child>
-        <div className="header_text">
-          <h1>Profile</h1>
-          <h2>Some info may be visible to other people</h2>
-        </div>
-        <div className="btn_container">
-          <Button variant="primary">Edit</Button>
-        </div>
-      </Child>
-      <Infodata title="photo" value={Person} />
-      <Infodata title="name" value="Xanthe Neal" />
-      <Infodata
-        title="bio"
-        value="I am a software developer and a big fan of talk.to"
-      />
-      <Infodata title="phone" value="908249274292" />
-      <Infodata title="email" value="xanthe.neal@gmail.com" />
-      <Infodata title="password" value="************" />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <Child>
+            <div className="header_text">
+              <h1>Profile</h1>
+              <h2>Some info may be visible to other people</h2>
+            </div>
+            <div className="btn_container">
+              <Button
+                variant="primary"
+                clickHandler={() => props.history.push("/edit")}
+              >
+                Edit
+              </Button>
+            </div>
+          </Child>
+          <Infodata title="photo" value={Person} />
+          <Infodata title="name" value={name || "—"} />
+          <Infodata title="bio" value={bio || "—"} />
+          <Infodata title="phone" value={phone || "—"} />
+          <Infodata title="email" value={email || "—"} />
+        </>
+      )}
     </Parent>
   );
 };
@@ -102,14 +116,14 @@ const Infodata = ({ title, value }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Divider />
       <DataContainer>
         <h1>{title}</h1>
         {val}
       </DataContainer>
-    </React.Fragment>
+    </>
   );
 };
 
-export default Infobox;
+export default React.memo(withRouter(Infobox));

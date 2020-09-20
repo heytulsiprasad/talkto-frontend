@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
 
 const Back = () => (
   <Container>
-    <StyledLink className="back-text" to="/dash">
+    <StyledLink className="back-text" to="/">
       <span className="material-icons back-icon">arrow_back_ios</span>
       Back
     </StyledLink>

@@ -34,13 +34,13 @@ const Logo = styled(Link)`
   }
 `;
 
-const Navbar = ({ onLogout }) => (
+const Navbar = ({ onLogout, username }) => (
   <NavbarContainer>
     <Logo to="/">
       <img src={Icon} alt="product-logo" />
       <h1>Talk.to</h1>
     </Logo>
-    <Dropdown onLogout={onLogout} />
+    <Dropdown username={username} onLogout={onLogout} />
   </NavbarContainer>
 );
 

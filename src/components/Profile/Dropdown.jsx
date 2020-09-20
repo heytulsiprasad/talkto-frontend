@@ -63,7 +63,7 @@ const Overlay = styled.div`
   }
 `;
 
-const Dropdown = ({ onLogout, history }) => {
+const Dropdown = ({ onLogout, history, username }) => {
   const dropdownRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -98,7 +98,7 @@ const Dropdown = ({ onLogout, history }) => {
           src={Person}
           alt="person-looking-straight"
         />
-        <h1 className="person-title">Xanthe Neal</h1>
+        <h1 className="person-title">{username || "—"}</h1>
         <span className="material-icons drop-icon">
           {isOpen ? "arrow_drop_up" : "arrow_drop_down"}
         </span>

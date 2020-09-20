@@ -29,7 +29,6 @@ export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post("/auth/signup", userData)
     .then(() => {
-      console.log(history);
       history.push("/");
     })
     .catch((err) => {
@@ -85,16 +84,17 @@ export const loginUser = (userData, history) => (dispatch) => {
 };
 
 // Get user profile
-export const fetchUserProfile = () => (dispatch) => {
+export const fetchUserProfile = (callback) => (dispatch) => {
   axios
     .get("/auth/profile", { withCredentials: true })
     .then((res) => {
       const {
-        name, bio, phone, local, google, facebook,
+        name, bio, phone, local, google, facebook, email,
       } = res.data;
 
       const user = {
         name,
+        email,
         bio,
         phone,
         local: local[0],
@@ -103,6 +103,7 @@ export const fetchUserProfile = () => (dispatch) => {
       };
 
       dispatch(setCurrentUser(user));
+      callback();
     })
     .catch((err) => {
       throw new Error(err);
