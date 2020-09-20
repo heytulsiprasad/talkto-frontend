@@ -29,9 +29,6 @@ class LoginContainer extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    // If logged in redirect to dashboard
-    if (props.auth.isAuthenticated) props.history.push("/dashboard");
-
     // Check and fill the errors
     if (props.errors) return { ...state, errors: props.errors };
   }
@@ -51,15 +48,11 @@ class LoginContainer extends React.Component {
       password: this.state.password,
     };
 
-    this.props.loginUser(userInput);
+    this.props.loginUser(userInput, this.props.history);
   };
 
   componentDidMount() {
     this.props.clearErrors();
-
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
   }
 
   render() {
@@ -90,12 +83,10 @@ class LoginContainer extends React.Component {
 
 LoginContainer.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object,
   errors: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   errors: state.errors,
 });
 

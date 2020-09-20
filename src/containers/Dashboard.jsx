@@ -7,7 +7,7 @@ import Navbar from "../components/Profile/Navbar";
 import Titlebar from "../components/Profile/Titlebar";
 import Infobox from "../components/Profile/Infobox";
 
-import { fetchUserProfile } from "../redux/actions/authActions";
+import { fetchUserProfile, logoutUser } from "../redux/actions/authActions";
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -16,9 +16,11 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const { logoutUser } = this.props;
+
     return (
       <Layout>
-        <Navbar />
+        <Navbar onLogout={logoutUser} />
         <Titlebar />
         <Infobox />
       </Layout>
@@ -28,6 +30,7 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
   fetchUserProfile: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { fetchUserProfile })(Dashboard);
+export default connect(null, { fetchUserProfile, logoutUser })(Dashboard);

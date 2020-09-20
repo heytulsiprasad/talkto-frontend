@@ -29,9 +29,6 @@ class SignupContainer extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    // If authenticated, pass on to /dashboard route
-    if (props.auth.isAuthenticated) props.history.push("/dashboard");
-
     // Add errors to local state
     if (props.errors) return { ...state, errors: props.errors };
   }
@@ -51,15 +48,11 @@ class SignupContainer extends React.Component {
       password: this.state.password,
     };
 
-    this.props.registerUser(userInput);
+    this.props.registerUser(userInput, this.props.history);
   };
 
   componentDidMount() {
     this.props.clearErrors();
-
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
   }
 
   render() {
@@ -91,12 +84,10 @@ class SignupContainer extends React.Component {
 SignupContainer.propTypes = {
   registerUser: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
-  auth: PropTypes.object,
   errors: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   errors: state.errors,
 });
 
