@@ -57,7 +57,7 @@ export const fetchUserProfile = (callback) => (dispatch) => {
     .get("/profile", { withCredentials: true })
     .then((res) => {
       const {
-        name, bio, phone, local, google, facebook, email,
+        name, bio, phone, local, google, facebook, email, image,
       } = res.data;
 
       const user = {
@@ -65,6 +65,7 @@ export const fetchUserProfile = (callback) => (dispatch) => {
         email,
         bio,
         phone,
+        image,
         local: local[0],
         google: google[0],
         facebook: facebook[0],

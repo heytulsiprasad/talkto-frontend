@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Person from "../../assets/person.jpg";
-
 const FieldContainer = styled.div`
   padding-top: 1rem;
 `;
@@ -82,23 +80,21 @@ const Error = styled.p`
 
 export const InputField = ({ title, children, error, ...rest }) => (
   <FieldContainer>
-    {children || (
-      <FieldLabel>
-        <FieldTitle>{title}</FieldTitle>
-        <FieldInput error={error} {...rest} />
-        {error && <Error>{error}</Error>}
-      </FieldLabel>
-    )}
+    <FieldLabel>
+      <FieldTitle>{title}</FieldTitle>
+      <FieldInput error={error} {...rest} />
+      {error && <Error>{error}</Error>}
+    </FieldLabel>
   </FieldContainer>
 );
 
-export const InputFieldImage = ({ title }) => (
-  <InputField>
+export const InputFieldImage = ({ title, image }) => (
+  <FieldContainer>
     <ImageFieldContainer>
-      <img className="upload-image" src={Person} alt="Person staring at wall" />
+      <img className="upload-image" src={image} alt="Person Profile" />
       <span className="material-icons input-icon">camera_alt</span>
       <input id="upload-photo" type="file" accept="image/png, image/jpeg" />
       <label htmlFor="upload-photo">{title}</label>
     </ImageFieldContainer>
-  </InputField>
+  </FieldContainer>
 );

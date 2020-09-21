@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
 
     return (
       <Layout>
-        <Navbar username={user.name} onLogout={logoutUser} />
+        <Navbar username={user.name} onLogout={logoutUser} image={user.image} />
         <Titlebar />
         <Infobox user={user} isLoading={isLoading} />
       </Layout>

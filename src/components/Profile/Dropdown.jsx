@@ -63,7 +63,7 @@ const Overlay = styled.div`
   }
 `;
 
-const Dropdown = ({ onLogout, history, username }) => {
+const Dropdown = ({ onLogout, history, username, image }) => {
   const dropdownRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -93,11 +93,7 @@ const Dropdown = ({ onLogout, history, username }) => {
   return (
     <Container ref={dropdownRef} onClick={toggleDropdown}>
       <Topbar>
-        <img
-          className="person-profile"
-          src={Person}
-          alt="person-looking-straight"
-        />
+        <img className="person-profile" src={image} alt="Person Profile" />
         <h1 className="person-title">{username || "—"}</h1>
         <span className="material-icons drop-icon">
           {isOpen ? "arrow_drop_up" : "arrow_drop_down"}

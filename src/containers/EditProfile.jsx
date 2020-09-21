@@ -28,7 +28,7 @@ class EditProfile extends React.Component {
 
     return (
       <Layout>
-        <Navbar username={user.name} onLogout={logoutUser} />
+        <Navbar username={user.name} image={user.image} onLogout={logoutUser} />
         <Back />
         <EditInfo isLoading={isLoading} />
       </Layout>

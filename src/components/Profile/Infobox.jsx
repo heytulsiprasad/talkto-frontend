@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
 import Button from "./Button";
-import Person from "../../assets/person.jpg";
 import Loading from "../Loading";
 
 const Parent = styled.div`
@@ -72,7 +71,7 @@ const Picture = styled.img`
 const Infobox = (props) => {
   const { user, isLoading } = props;
 
-  const { name, email, bio, phone } = user;
+  const { name, email, bio, phone, image } = user;
 
   return (
     <Parent>
@@ -94,7 +93,7 @@ const Infobox = (props) => {
               </Button>
             </div>
           </Child>
-          <Infodata title="photo" value={Person} />
+          <Infodata title="photo" value={image} />
           <Infodata title="name" value={name || "—"} />
           <Infodata title="bio" value={bio || "—"} />
           <Infodata title="phone" value={phone || "—"} />

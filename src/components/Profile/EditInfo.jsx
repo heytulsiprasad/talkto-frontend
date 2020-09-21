@@ -57,7 +57,7 @@ class EditInfo extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.isLoading !== this.props.isLoading) {
-      const { name, email, phone, bio } = prevProps.user;
+      const { name, email, phone, bio, image } = prevProps.user;
 
       this.setState((state) => ({
         ...state,
@@ -66,6 +66,7 @@ class EditInfo extends React.Component {
           name,
           email,
           phone,
+          image,
           bio,
         },
       }));
@@ -93,7 +94,7 @@ class EditInfo extends React.Component {
   };
 
   render() {
-    const { name, email, phone, bio } = this.state.profile;
+    const { name, email, phone, bio, image } = this.state.profile;
     const error = this.props.errors;
 
     return (
@@ -107,12 +108,12 @@ class EditInfo extends React.Component {
         ) : (
           <>
             <FormContainer onSubmit={this.submitHandler}>
-              <InputFieldImage title="Change Photo" />
+              <InputFieldImage title="Change Photo" image={image} />
               <InputField
                 title="Name"
                 name="name"
                 type="text"
-                value={name}
+                value={name || ""}
                 error={error.name}
                 placeholder="Enter your name..."
                 onChange={this.inputChangeHandler}
@@ -121,7 +122,7 @@ class EditInfo extends React.Component {
                 title="Bio"
                 name="bio"
                 type="text"
-                value={bio}
+                value={bio || ""}
                 placeholder="Enter your bio..."
                 error={error.bio}
                 onChange={this.inputChangeHandler}
@@ -131,7 +132,7 @@ class EditInfo extends React.Component {
                 name="phone"
                 type="tel"
                 pattern="((\+|00)?[0-9]{2}|0)[1-9]([0-9]){8}"
-                value={phone}
+                value={phone || ""}
                 error={error.phone}
                 placeholder="Enter your phone..."
                 onChange={this.inputChangeHandler}
@@ -141,7 +142,7 @@ class EditInfo extends React.Component {
                 name="email"
                 type="email"
                 placeholder="Enter your email..."
-                value={email}
+                value={email || ""}
                 error={error.error}
                 onChange={this.inputChangeHandler}
                 required
