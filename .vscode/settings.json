@@ -2,9 +2,6 @@
   "editor.formatOnType": true,
   "editor.formatOnPaste": true,
   "eslint.alwaysShowStatus": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },

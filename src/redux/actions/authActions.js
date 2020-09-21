@@ -5,6 +5,7 @@ import {
   GET_ERRORS,
   CLEAR_ERRORS,
   CLEAR_CURRENT_USER,
+  SET_AUTH_STATE,
 } from "./types";
 
 export const setCurrentUser = (newUser) => ({
@@ -28,7 +29,32 @@ export const registerUser = (userData, history) => (dispatch) => {
 
   axios
     .post("/auth/signup", userData)
-    .then(() => {
+    .then((res) => {
+      // console.log(res);
+
+      const {
+        name,
+        bio,
+        phone,
+        local,
+        google,
+        facebook,
+        email,
+        image,
+      } = res.data.user;
+
+      const user = {
+        name,
+        email,
+        bio,
+        phone,
+        image,
+        local: local[0],
+        google: google[0],
+        facebook: facebook[0],
+      };
+
+      dispatch(setCurrentUser(user));
       history.push("/");
     })
     .catch((err) => {
@@ -43,7 +69,31 @@ export const loginUser = (userData, history) => (dispatch) => {
 
   axios
     .post("/auth/login", userData)
-    .then(() => {
+    .then((res) => {
+      const {
+        name,
+        bio,
+        phone,
+        local,
+        google,
+        facebook,
+        email,
+        image,
+      } = res.data.user;
+
+      const user = {
+        name,
+        email,
+        bio,
+        phone,
+        image,
+        local: local[0],
+        google: google[0],
+        facebook: facebook[0],
+      };
+
+      dispatch(setCurrentUser(user));
+
       history.push("/");
     })
     .catch((err) => {
@@ -57,7 +107,14 @@ export const fetchUserProfile = (callback) => (dispatch) => {
     .get("/profile", { withCredentials: true })
     .then((res) => {
       const {
-        name, bio, phone, local, google, facebook, email, image,
+        name,
+        bio,
+        phone,
+        local,
+        google,
+        facebook,
+        email,
+        image,
       } = res.data;
 
       const user = {
@@ -81,6 +138,9 @@ export const fetchUserProfile = (callback) => (dispatch) => {
 
 // Edit user profile
 export const editUserProfile = (userdata, history) => (dispatch) => {
+  // Clear previous errors
+  dispatch(clearErrors());
+
   axios
     .post("/profile/edit", userdata, { withCredentials: true })
     .then(() => history.push("/"))
@@ -102,4 +162,8 @@ export const logoutUser = (history) => (dispatch) => {
     .catch((err) => {
       throw new Error(err);
     });
+};
+
+export const setAuthState = (isAuth) => (dispatch) => {
+  dispatch({ type: SET_AUTH_STATE, payload: isAuth });
 };

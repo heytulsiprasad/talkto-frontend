@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import Loading from "../components/Loading";
 
-const PrivateRoute = ({
+const PublicRoute = ({
   component: Component,
   isLoading,
   isAuthenticated,
@@ -18,17 +18,17 @@ const PrivateRoute = ({
     render={(props) =>
       isLoading ? (
         <Loading />
-      ) : isAuthenticated ? (
+      ) : !isAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )
     }
   />
 );
 
-PrivateRoute.propTypes = {
+PublicRoute.propTypes = {
   component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-export default PrivateRoute;
+export default PublicRoute;

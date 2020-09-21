@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 import CenterBox from "../components/CenterBox";
 import LogoBox from "../components/LogoBox";
@@ -93,5 +94,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { registerUser, clearErrors })(
-  SignupContainer
+  withRouter(SignupContainer)
 );

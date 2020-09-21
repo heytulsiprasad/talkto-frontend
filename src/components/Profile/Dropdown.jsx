@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import Person from "../../assets/person.jpg";
-
 const Container = styled.div`
   position: relative;
   user-select: none;
