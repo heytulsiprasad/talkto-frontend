@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const InputContainer = styled.div`
-  /* border: 1px solid ${(props) => (props.error ? "#bdbdbd" : "red")}; */
   border-radius: 8px;
   padding: 10px;
   margin-top: 10px;

@@ -34,22 +34,6 @@ export const registerUser = (userData, history) => (dispatch) => {
     .catch((err) => {
       dispatch(errorCreator(err.response.data));
     });
-  // .then((res) => {
-  //   // Get the user object from response
-  //   const { user } = res.data;
-
-  //   const newUser = {
-  //     id: user._id,
-  //     email: user.email,
-  //     registerOn: user.date,
-  //   };
-
-  //   dispatch(setCurrentUser(newUser));
-  // })
-  // .catch((err) => {
-  //   console.dir(err);
-  //   return dispatch(errorCreator(err.response.data));
-  // });
 };
 
 // Log in user
@@ -65,28 +49,12 @@ export const loginUser = (userData, history) => (dispatch) => {
     .catch((err) => {
       dispatch(errorCreator(err.response.data));
     });
-
-  // axios
-  //   .post("/auth/login", userData)
-  //   .then((res) => {
-  //     // Get the user object from response
-  //     const { user } = res.data;
-
-  //     const newUser = {
-  //       id: user._id,
-  //       email: user.email,
-  //       registerOn: user.data,
-  //     };
-
-  //     dispatch(setCurrentUser(newUser));
-  //   })
-  //   .catch((err) => dispatch(errorCreator(err.response.data)));
 };
 
 // Get user profile
 export const fetchUserProfile = (callback) => (dispatch) => {
   axios
-    .get("/auth/profile", { withCredentials: true })
+    .get("/profile", { withCredentials: true })
     .then((res) => {
       const {
         name, bio, phone, local, google, facebook, email,
@@ -107,6 +75,17 @@ export const fetchUserProfile = (callback) => (dispatch) => {
     })
     .catch((err) => {
       throw new Error(err);
+    });
+};
+
+// Edit user profile
+export const editUserProfile = (userdata, history) => (dispatch) => {
+  axios
+    .post("/profile/edit", userdata, { withCredentials: true })
+    .then(() => history.push("/"))
+    .catch((err) => {
+      // console.dir(err);
+      dispatch(errorCreator(err.response.data));
     });
 };
 

@@ -31,6 +31,7 @@ class SignupContainer extends React.Component {
   static getDerivedStateFromProps(props, state) {
     // Add errors to local state
     if (props.errors) return { ...state, errors: props.errors };
+    return null;
   }
 
   inputValue = (name, val) => {

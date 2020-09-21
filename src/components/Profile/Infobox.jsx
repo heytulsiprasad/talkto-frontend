@@ -71,7 +71,6 @@ const Picture = styled.img`
 
 const Infobox = (props) => {
   const { user, isLoading } = props;
-  console.log(user, isLoading);
 
   const { name, email, bio, phone } = user;
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Person from "./../../assets/person.jpg";
+import Person from "../../assets/person.jpg";
 
 const FieldContainer = styled.div`
   padding-top: 1rem;
@@ -15,8 +15,9 @@ const FieldTitle = styled.h2`
 `;
 
 const FieldInput = styled.input`
+  border: 1px solid ${(props) => (props.error ? "red" : "#828282")};
   min-width: 60%;
-  border: 1px solid #828282;
+  /* border: 1px solid #828282; */
   border-radius: 12px;
   padding: 15px 20px;
   outline: none;
@@ -73,36 +74,31 @@ const ImageFieldContainer = styled.div`
   }
 `;
 
-export const InputField = ({ title, children, ...rest }) => {
-  return (
-    <FieldContainer>
-      {children || (
-        <FieldLabel>
-          <FieldTitle>{title}</FieldTitle>
-          <FieldInput {...rest} />
-        </FieldLabel>
-      )}
-    </FieldContainer>
-  );
-};
+const Error = styled.p`
+  font-size: 11px;
+  margin: 2px 10px;
+  color: red;
+`;
 
-export const InputFieldImage = ({ title }) => {
-  return (
-    <InputField>
-      <ImageFieldContainer>
-        <img
-          className="upload-image"
-          src={Person}
-          alt="Person staring at wall"
-        />
-        <span className="material-icons input-icon">camera_alt</span>
-        <input
-          id="upload-photo"
-          type="file"
-          accept="image/png, image/jpeg"
-        ></input>
-        <label htmlFor="upload-photo">{title}</label>
-      </ImageFieldContainer>
-    </InputField>
-  );
-};
+export const InputField = ({ title, children, error, ...rest }) => (
+  <FieldContainer>
+    {children || (
+      <FieldLabel>
+        <FieldTitle>{title}</FieldTitle>
+        <FieldInput error={error} {...rest} />
+        {error && <Error>{error}</Error>}
+      </FieldLabel>
+    )}
+  </FieldContainer>
+);
+
+export const InputFieldImage = ({ title }) => (
+  <InputField>
+    <ImageFieldContainer>
+      <img className="upload-image" src={Person} alt="Person staring at wall" />
+      <span className="material-icons input-icon">camera_alt</span>
+      <input id="upload-photo" type="file" accept="image/png, image/jpeg" />
+      <label htmlFor="upload-photo">{title}</label>
+    </ImageFieldContainer>
+  </InputField>
+);
