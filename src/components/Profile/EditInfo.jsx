@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Button from "./Button";
-import { InputFieldImage, InputField } from "./FormElements";
+import InputField from "./InputField";
+import InputFieldImage from "./InputFieldImage";
 import Loading from "../Loading";
 import { editUserProfile } from "../../redux/actions/authActions";
+import imageUpload from "../../utils/imageUpload";
 
 const Container = styled.div`
   grid-row: 3 / 4;
@@ -57,7 +59,9 @@ class EditInfo extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.isLoading !== this.props.isLoading) {
-      const { name, email, phone, bio, image } = prevProps.user;
+      const {
+        name, email, phone, bio, image
+      } = prevProps.user;
 
       this.setState((state) => ({
         ...state,
@@ -85,6 +89,31 @@ class EditInfo extends React.Component {
     }));
   };
 
+  imageChangeHandler = async (e) => {
+    const imageFile = e.target.files[0];
+
+    if (!imageFile) {
+      this.setState({ imageError: "Please select image. " });
+      return false;
+    }
+
+    if (!imageFile.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+      this.setState({ imageError: "Please select a valid image." });
+      return false;
+    }
+
+    // Utils function
+    imageUpload(imageFile, (url) => {
+      this.setState((state) => ({
+        ...state,
+        profile: {
+          ...state.profile,
+          image: url,
+        },
+      }));
+    });
+  };
+
   submitHandler = (e) => {
     e.preventDefault();
 
@@ -94,7 +123,9 @@ class EditInfo extends React.Component {
   };
 
   render() {
-    const { name, email, phone, bio, image } = this.state.profile;
+    const {
+      name, email, phone, bio, image
+    } = this.state.profile;
     const error = this.props.errors;
 
     return (
@@ -108,7 +139,14 @@ class EditInfo extends React.Component {
         ) : (
           <>
             <FormContainer onSubmit={this.submitHandler}>
-              <InputFieldImage title="Change Photo" image={image} />
+              <InputFieldImage
+                title="Change Photo"
+                value={image}
+                id="upload-photo"
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={this.imageChangeHandler}
+              />
               <InputField
                 title="Name"
                 name="name"

@@ -5,24 +5,6 @@ const FieldContainer = styled.div`
   padding-top: 1rem;
 `;
 
-const FieldTitle = styled.h2`
-  font-size: 13px;
-  line-height: 18px;
-  color: #4f4f4f;
-  margin-bottom: 5px;
-`;
-
-const FieldInput = styled.input`
-  border: 1px solid ${(props) => (props.error ? "red" : "#828282")};
-  min-width: 60%;
-  /* border: 1px solid #828282; */
-  border-radius: 12px;
-  padding: 15px 20px;
-  outline: none;
-`;
-
-const FieldLabel = styled.label``;
-
 const ImageFieldContainer = styled.div`
   display: flex;
   max-width: 13rem;
@@ -72,29 +54,17 @@ const ImageFieldContainer = styled.div`
   }
 `;
 
-const Error = styled.p`
-  font-size: 11px;
-  margin: 2px 10px;
-  color: red;
-`;
+const InputFieldImage = ({ title, id, value, ...rest }) => (
+  // Make an action
+  // Store image on Redux
 
-export const InputField = ({ title, children, error, ...rest }) => (
-  <FieldContainer>
-    <FieldLabel>
-      <FieldTitle>{title}</FieldTitle>
-      <FieldInput error={error} {...rest} />
-      {error && <Error>{error}</Error>}
-    </FieldLabel>
-  </FieldContainer>
-);
-
-export const InputFieldImage = ({ title, image }) => (
   <FieldContainer>
     <ImageFieldContainer>
-      <img className="upload-image" src={image} alt="Person Profile" />
+      <img className="upload-image" src={value} alt="Person Profile" />
       <span className="material-icons input-icon">camera_alt</span>
-      <input id="upload-photo" type="file" accept="image/png, image/jpeg" />
-      <label htmlFor="upload-photo">{title}</label>
+      <input id={id} {...rest} />
+      <label htmlFor={id}>{title}</label>
     </ImageFieldContainer>
   </FieldContainer>
 );
+export default InputFieldImage;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.css";
@@ -10,6 +10,7 @@ import PrivateRoute from "./containers/PrivateRoute";
 import PublicRoute from "./containers/PublicRoute";
 import Dashboard from "./containers/Dashboard";
 import EditProfile from "./containers/EditProfile";
+import FourOhFour from "./containers/FourOhFour";
 // import store from "./redux/store";
 
 import { setAuthState } from "./redux/actions/authActions";
@@ -28,6 +29,7 @@ const App = ({ isAuth, setAuthState }) => {
         setIsLoading(true);
         throw new Error(err);
       });
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -62,6 +64,7 @@ const App = ({ isAuth, setAuthState }) => {
             path="/login"
             component={LoginContainer}
           />
+          <Route path="*" component={FourOhFour} />
         </Switch>
       </Router>
     </>

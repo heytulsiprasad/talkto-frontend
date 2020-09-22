@@ -3,7 +3,7 @@ import {
   CLEAR_CURRENT_USER,
   SET_AUTH_STATE,
 } from "../actions/types";
-import isEmpty from "./isEmpty";
+import isEmpty from "../../utils/isEmpty";
 
 const initialState = {
   user: {},

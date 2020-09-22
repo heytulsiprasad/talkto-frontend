@@ -141,6 +141,8 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
+  console.log(userdata);
+
   axios
     .post("/profile/edit", userdata, { withCredentials: true })
     .then(() => history.push("/"))

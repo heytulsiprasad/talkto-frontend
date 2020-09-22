@@ -37,6 +37,7 @@
     "import/no-named-as-default": 0,
     "react/jsx-props-no-spreading": "off",
     "no-confusing-arrow": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "comma-dangle": "off"
   }
 }
