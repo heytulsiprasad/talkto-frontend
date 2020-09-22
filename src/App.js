@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+// import axios from "axios";
+import API from "./utils/axiosInstance";
 
 import "./App.css";
 import SignupContainer from "./containers/SignupContainer";
@@ -11,7 +12,6 @@ import PublicRoute from "./containers/PublicRoute";
 import Dashboard from "./containers/Dashboard";
 import EditProfile from "./containers/EditProfile";
 import FourOhFour from "./containers/FourOhFour";
-// import store from "./redux/store";
 
 import { setAuthState } from "./redux/actions/authActions";
 
@@ -19,8 +19,7 @@ const App = ({ isAuth, setAuthState }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("/auth/state", { withCredentials: true })
+    API.get("/auth/state", { withCredentials: true })
       .then((res) => {
         setAuthState(res.data);
         setIsLoading(false);

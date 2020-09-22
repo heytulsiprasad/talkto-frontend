@@ -45,18 +45,20 @@ const Footer = ({ type }) => {
   if (type === "login") {
     bottomText = (
       <h2>
-        Don't have an account yet?<Link to="/signup">Register</Link>
+        Don't have an account yet?
+        <Link to="/signup">Register</Link>
       </h2>
     );
   } else if (type === "signup") {
     bottomText = (
       <h2>
-        Already a member?<Link to="/login">Login</Link>
+        Already a member?
+        <Link to="/login">Login</Link>
       </h2>
     );
   }
 
-  const baseURL = "http://localhost:5000";
+  const baseURL = process.env.REACT_APP_BACKEND_URL;
 
   return (
     <FooterParent>

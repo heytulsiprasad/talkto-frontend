@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../../utils/axiosInstance";
 
 import {
   SET_CURRENT_USER,
@@ -27,8 +27,7 @@ export const registerUser = (userData, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  axios
-    .post("/auth/signup", userData)
+  API.post("/auth/signup", userData)
     .then((res) => {
       // console.log(res);
 
@@ -67,8 +66,7 @@ export const loginUser = (userData, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  axios
-    .post("/auth/login", userData)
+  API.post("/auth/login", userData)
     .then((res) => {
       const {
         name,
@@ -103,8 +101,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 
 // Get user profile
 export const fetchUserProfile = (callback) => (dispatch) => {
-  axios
-    .get("/profile", { withCredentials: true })
+  API.get("/profile", { withCredentials: true })
     .then((res) => {
       const {
         name,
@@ -141,10 +138,7 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  console.log(userdata);
-
-  axios
-    .post("/profile/edit", userdata, { withCredentials: true })
+  API.post("/profile/edit", userdata, { withCredentials: true })
     .then(() => history.push("/"))
     .catch((err) => {
       // console.dir(err);
@@ -155,8 +149,7 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
 // Logout user
 
 export const logoutUser = (history) => (dispatch) => {
-  axios
-    .get("/auth/logout", { withCredentials: true })
+  API.get("/auth/logout", { withCredentials: true })
     .then(() => {
       dispatch({ type: CLEAR_CURRENT_USER });
       history.push("/login");
