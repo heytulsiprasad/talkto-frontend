@@ -58,22 +58,25 @@ const Footer = ({ type }) => {
     );
   }
 
-  const baseURL = process.env.REACT_APP_BACKEND_URL;
+  const backendURL =
+    process.env.NODE_ENV === "production"
+      ? "https://talk-to-network.herokuapp.com"
+      : "http://localhost:5000";
 
   return (
     <FooterParent>
       <h2>or continue with these social profiles</h2>
       <div className="FooterIcons">
-        <a href={`${baseURL}/auth/facebook`}>
+        <a href={`${backendURL}/auth/facebook`}>
           <Facebook />
         </a>
-        <a href={`${baseURL}/auth/github`}>
+        <a href={`${backendURL}/auth/github`}>
           <GitHub />
         </a>
-        <a href={`${baseURL}/auth/google`}>
+        <a href={`${backendURL}/auth/google`}>
           <Google />
         </a>
-        <a href={`${baseURL}/auth/twitter`}>
+        <a href={`${backendURL}/auth/twitter`}>
           <Twitter />
         </a>
       </div>
