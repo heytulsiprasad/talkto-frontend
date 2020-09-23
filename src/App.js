@@ -15,12 +15,17 @@ import FourOhFour from "./containers/FourOhFour";
 
 import { setAuthState } from "./redux/actions/authActions";
 
+const backendURL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_BACKEND_PROD_URL
+    : process.env.REACT_APP_BACKEND_DEV_URL;
+
 const App = ({ isAuth, setAuthState }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/auth/state", { withCredentials: true })
+      .get(`${backendURL}/auth/state`, { withCredentials: true })
       .then((res) => {
         setAuthState(res.data);
         setIsLoading(false);
