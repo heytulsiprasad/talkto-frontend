@@ -10,8 +10,8 @@ import {
 
 const backendURL =
   process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_BACKEND_PROD_URL
-    : process.env.REACT_APP_BACKEND_DEV_URL;
+    ? "https://talk-to-network.herokuapp.com"
+    : "http://localhost:5000";
 
 export const setCurrentUser = (newUser) => ({
   type: SET_CURRENT_USER,

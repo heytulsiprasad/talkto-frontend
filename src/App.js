@@ -17,8 +17,8 @@ import { setAuthState } from "./redux/actions/authActions";
 
 const backendURL =
   process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_BACKEND_PROD_URL
-    : process.env.REACT_APP_BACKEND_DEV_URL;
+    ? "https://talk-to-network.herokuapp.com"
+    : "http://localhost:5000";
 
 const App = ({ isAuth, setAuthState }) => {
   const [isLoading, setIsLoading] = useState(true);
