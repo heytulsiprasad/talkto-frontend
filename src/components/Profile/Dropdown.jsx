@@ -59,9 +59,13 @@ const Overlay = styled.div`
     font-size: 13px;
     font-weight: normal;
   }
+
+  .delete {
+    color: #d62828;
+  }
 `;
 
-const Dropdown = ({ onLogout, history, username, image }) => {
+const Dropdown = ({ onLogout, onDelete, history, username, image }) => {
   const dropdownRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -107,6 +111,10 @@ const Dropdown = ({ onLogout, history, username, image }) => {
             <span className="material-icons">login</span>
             <h2 className="option-text">Logout</h2>
           </div>
+          <div className="delete option" onClick={() => onDelete(history)}>
+            <span className="material-icons">delete</span>
+            <h2 className="option-text">Delete Account</h2>
+          </div>
         </Overlay>
       )}
     </Container>
@@ -115,6 +123,7 @@ const Dropdown = ({ onLogout, history, username, image }) => {
 
 Dropdown.propTypes = {
   onLogout: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

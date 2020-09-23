@@ -158,11 +158,21 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
     });
 };
 
-// Logout user
-
 export const logoutUser = (history) => (dispatch) => {
   axios
     .get(`${backendURL}/auth/logout`, { withCredentials: true })
+    .then(() => {
+      dispatch({ type: CLEAR_CURRENT_USER });
+      history.push("/login");
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
+};
+
+export const deleteUser = (history) => (dispatch) => {
+  axios
+    .delete(`${backendURL}/profile/delete`, { withCredentials: true })
     .then(() => {
       dispatch({ type: CLEAR_CURRENT_USER });
       history.push("/login");

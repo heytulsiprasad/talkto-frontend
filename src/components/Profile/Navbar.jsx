@@ -34,18 +34,24 @@ const Logo = styled(Link)`
   }
 `;
 
-const Navbar = ({ onLogout, username, image }) => (
+const Navbar = ({ onLogout, onDelete, username, image }) => (
   <NavbarContainer>
     <Logo to="/">
       <img src={Icon} alt="product-logo" />
       <h1>Talk.to</h1>
     </Logo>
-    <Dropdown username={username} image={image} onLogout={onLogout} />
+    <Dropdown
+      username={username}
+      image={image}
+      onLogout={onLogout}
+      onDelete={onDelete}
+    />
   </NavbarContainer>
 );
 
 Navbar.propTypes = {
   onLogout: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Navbar;

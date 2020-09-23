@@ -7,7 +7,11 @@ import Navbar from "../components/Profile/Navbar";
 import Titlebar from "../components/Profile/Titlebar";
 import Infobox from "../components/Profile/Infobox";
 
-import { fetchUserProfile, logoutUser } from "../redux/actions/authActions";
+import {
+  fetchUserProfile,
+  logoutUser,
+  deleteUser,
+} from "../redux/actions/authActions";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -25,12 +29,17 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { logoutUser, user } = this.props;
+    const { logoutUser, user, deleteUser } = this.props;
     const { isLoading } = this.state;
 
     return (
       <Layout>
-        <Navbar username={user.name} onLogout={logoutUser} image={user.image} />
+        <Navbar
+          username={user.name}
+          onLogout={logoutUser}
+          onDelete={deleteUser}
+          image={user.image}
+        />
         <Titlebar />
         <Infobox user={user} isLoading={isLoading} />
       </Layout>
@@ -47,6 +56,8 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { fetchUserProfile, logoutUser })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  fetchUserProfile,
+  logoutUser,
+  deleteUser,
+})(Dashboard);
