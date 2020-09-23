@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-// import axios from "axios";
+import axios from "axios";
 import API from "./utils/axiosInstance";
 
 import "./App.css";
@@ -19,7 +19,8 @@ const App = ({ isAuth, setAuthState }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    API.get("/auth/state", { withCredentials: true })
+    axios
+      .get("http://localhost:5000/auth/state", { withCredentials: true })
       .then((res) => {
         setAuthState(res.data);
         setIsLoading(false);

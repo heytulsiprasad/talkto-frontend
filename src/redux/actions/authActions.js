@@ -1,4 +1,4 @@
-import API from "../../utils/axiosInstance";
+import axios from "axios";
 
 import {
   SET_CURRENT_USER,
@@ -7,6 +7,11 @@ import {
   CLEAR_CURRENT_USER,
   SET_AUTH_STATE,
 } from "./types";
+
+const backendURL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_BACKEND_PROD_URL
+    : process.env.REACT_APP_BACKEND_DEV_URL;
 
 export const setCurrentUser = (newUser) => ({
   type: SET_CURRENT_USER,
@@ -27,10 +32,11 @@ export const registerUser = (userData, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  API.post("/auth/signup", userData)
+  axios
+    .post(`${backendURL}/auth/signup`, userData, {
+      withCredentials: true,
+    })
     .then((res) => {
-      // console.log(res);
-
       const {
         name,
         bio,
@@ -66,7 +72,10 @@ export const loginUser = (userData, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  API.post("/auth/login", userData)
+  axios
+    .post(`${backendURL}/auth/login`, userData, {
+      withCredentials: true,
+    })
     .then((res) => {
       const {
         name,
@@ -91,7 +100,6 @@ export const loginUser = (userData, history) => (dispatch) => {
       };
 
       dispatch(setCurrentUser(user));
-
       history.push("/");
     })
     .catch((err) => {
@@ -101,7 +109,8 @@ export const loginUser = (userData, history) => (dispatch) => {
 
 // Get user profile
 export const fetchUserProfile = (callback) => (dispatch) => {
-  API.get("/profile", { withCredentials: true })
+  axios
+    .get(`${backendURL}/profile`, { withCredentials: true })
     .then((res) => {
       const {
         name,
@@ -138,7 +147,10 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
   // Clear previous errors
   dispatch(clearErrors());
 
-  API.post("/profile/edit", userdata, { withCredentials: true })
+  axios
+    .post(`${backendURL}/profile/edit`, userdata, {
+      withCredentials: true,
+    })
     .then(() => history.push("/"))
     .catch((err) => {
       // console.dir(err);
@@ -149,7 +161,8 @@ export const editUserProfile = (userdata, history) => (dispatch) => {
 // Logout user
 
 export const logoutUser = (history) => (dispatch) => {
-  API.get("/auth/logout", { withCredentials: true })
+  axios
+    .get(`${backendURL}/auth/logout`, { withCredentials: true })
     .then(() => {
       dispatch({ type: CLEAR_CURRENT_USER });
       history.push("/login");

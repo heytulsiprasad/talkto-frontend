@@ -59,9 +59,7 @@ class EditInfo extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.isLoading !== this.props.isLoading) {
-      const {
-        name, email, phone, bio, image
-      } = prevProps.user;
+      const { name, email, phone, bio, image } = prevProps.user;
 
       this.setState((state) => ({
         ...state,
@@ -123,9 +121,7 @@ class EditInfo extends React.Component {
   };
 
   render() {
-    const {
-      name, email, phone, bio, image
-    } = this.state.profile;
+    const { name, email, phone, bio, image } = this.state.profile;
     const error = this.props.errors;
 
     return (
@@ -180,9 +176,8 @@ class EditInfo extends React.Component {
                 name="email"
                 type="email"
                 placeholder="Enter your email..."
-                value={email || ""}
+                defaultValue={email || ""}
                 error={error.error}
-                onChange={this.inputChangeHandler}
                 required
               />
               <div style={{ marginTop: "23px" }}>

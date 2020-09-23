@@ -1,7 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
 
-const API = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
-});
+// const backendURL =
+//   process.env.NODE_ENV === "production"
+//     ? process.env.REACT_APP_BACKEND_PROD_URL
+//     : process.env.REACT_APP_BACKEND_DEV_URL;
 
-export default API;
+// const API = axios.create({
+//   baseURL: backendURL,
+// });
+
+// export default API;
