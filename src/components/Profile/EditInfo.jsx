@@ -172,13 +172,13 @@ class EditInfo extends React.Component {
                 onChange={this.inputChangeHandler}
               />
               <InputField
+                readOnly
                 title="Email"
                 name="email"
                 type="email"
                 placeholder="Enter your email..."
-                defaultValue={email || ""}
+                value={email || ""}
                 error={error.error}
-                required
               />
               <div style={{ marginTop: "23px" }}>
                 <Button variant="secondary" clickHandler={this.submitHandler}>
