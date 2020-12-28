@@ -29,9 +29,13 @@ Will make more fullstack projects in future. Thanks :)
 
 ### Related posts
 
-- [Top 5 CORS Issues You Don't Want To Run Into](https://dev.to/heytulsiprasad/top-5-cors-issues-you-don-t-want-to-run-into-16hi)
+- [Learn enough Redux to get started with your projects](https://dev.to/heytulsiprasad/learn-enough-redux-to-get-started-with-your-projects-32ei)
+- [Making a project using React and Redux to build our grasp](https://dev.to/heytulsiprasad/making-a-project-using-react-and-redux-to-build-our-grasp-251)
 - [Uploading media assets from React using Cloudinary](https://dev.to/heytulsiprasad/uploading-media-assets-from-react-using-cloudinary-4n4o)
-- [How to setup MongoDB with Node.js and Express?](https://dev.to/heytulsiprasad/how-to-setup-mongodb-with-node-js-and-express-2hki)
+
+I wrote a [series of posts on Redux](https://dev.to/heytulsiprasad/series/7137) (while I was learning it), that might be helpful.
+
+PS: I haven't covered [Redux Toolkit](https://redux-toolkit.js.org/) though, but it's being used more these days, you might want to check that out.
 
 ### Links
 
